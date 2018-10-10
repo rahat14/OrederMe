@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "699299453659",
+    "firebase_url": "https://foodorder-8fd6b.firebaseio.com",
+    "project_id": "foodorder-8fd6b",
+    "storage_bucket": "foodorder-8fd6b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699299453659:android:080afd714e995dea",
+        "android_client_info": {
+          "package_name": "com.example.anull.orederme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699299453659-j0sbqp9kiqnih1po3a89sq1pldbgihbb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuArNwADUyM0LZUXWtxEL0pjL1B-5vFT0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
