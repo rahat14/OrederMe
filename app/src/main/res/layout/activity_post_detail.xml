@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#fff"
+    app:cardCornerRadius="3dp"
+    android:orientation="vertical"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="5dp"
+    tools:context=".PostDetailActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+            <TextView
+                android:id="@+id/titleTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+
+                android:textColor="#000"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/descriptionTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This will be the description of the post"
+                android:textColor="#000"
+                android:textSize="20sp"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="25dp">
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Price: "
+                    android:textSize="20sp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/PriceTv"
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" 2000"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    />
+                <TextView
+
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" BDT"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    />
+
+
+
+            </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="15dp">
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/username_text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:inputType="numberDecimal"
+
+        android:hint="Please Enter The Quantity"/>
+
+
+
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+                <Button
+                    android:id="@+id/saveBtn"
+                    android:layout_weight="1"
+                    android:text="Add To Cart"
+
+
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:id="@+id/shareBtn"
+                    android:layout_weight="1"
+                    android:text="Check Out"
+
+                    style="@style/Base.Widget.AppCompat.Button.Colored"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+    </LinearLayout>
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -4,40 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/mainback"
     tools:context=".HomePage"
     tools:layout_editor_absoluteY="25dp">
 
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/main_toolber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-
-    </android.support.v7.widget.Toolbar>
-
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="276dp"
-        android:layout_height="86dp"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="424dp"
+        android:layout_marginBottom="416dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/loggo" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_search_food"
         android:layout_width="156dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

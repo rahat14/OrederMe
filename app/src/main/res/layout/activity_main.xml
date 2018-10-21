@@ -12,10 +12,11 @@
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <ImageView
-            android:src="@drawable/logo"
-            android:layout_width="200dp"
-            android:layout_height="200dp" />
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:src="@drawable/loggo" />
         <TextView
             android:gravity="center"
             android:id="@+id/sloganTx"

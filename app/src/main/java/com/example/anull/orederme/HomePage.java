@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -13,17 +15,25 @@ import com.google.firebase.auth.FirebaseAuth;
 public class HomePage extends AppCompatActivity {
             public Toolbar toolbar ;
             public FirebaseAuth  mAuth  ;
+            Button searchFood ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+
         mAuth = FirebaseAuth.getInstance() ;
-        toolbar = (Toolbar)findViewById(R.id.main_toolber) ;
+        searchFood = findViewById(R.id.button_search_food) ;
 
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setTitle("Title OF App");
 
+            searchFood.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getApplicationContext() , Resturant_list.class) ;
+                    startActivity(i);
+                }
+            });
 
 
 
