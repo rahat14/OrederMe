@@ -2,6 +2,7 @@ package com.example.anull.orederme;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -30,6 +31,8 @@ public class SignIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("ভোজন বিলাস");
 
         mAuth = FirebaseAuth.getInstance() ;
         //connecting place holders
@@ -39,6 +42,7 @@ public class SignIn extends AppCompatActivity {
         reg_btn = (TextView)findViewById(R.id.signUP_Backlink);
 
         mbar =(ProgressBar)findViewById(R.id.singInBar) ;  // progress bar
+        mbar.setVisibility(View.INVISIBLE);
 
         reg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +60,7 @@ public class SignIn extends AppCompatActivity {
 
                 String  login_email =  email.getText().toString() ;
                 String   login_pass = password.getText().toString() ;
+                mbar.setVisibility(View.VISIBLE);
 
                 if(!TextUtils.isEmpty(login_email) && !TextUtils.isEmpty(login_pass)){
                     // setting the bar the is Visible
@@ -78,7 +83,7 @@ public class SignIn extends AppCompatActivity {
 
                             }
 
-                            mbar.setVisibility(View.INVISIBLE);
+
 
                         }
                     });

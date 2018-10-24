@@ -31,7 +31,7 @@ public class PostDetailActivity extends AppCompatActivity {
 EditText quan ;
 
 
-    Button mcartBtn, mShareBtn;
+    Button mcartBtn, CheckoutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +42,12 @@ EditText quan ;
         mDetailTv = findViewById(R.id.descriptionTv);
         mImageIv = findViewById(R.id.imageView);
         mcartBtn = findViewById(R.id.saveBtn);
-        mShareBtn = findViewById(R.id.shareBtn);
+        CheckoutBtn = findViewById(R.id.Check_Btn);
         mPriceTv = findViewById(R.id.PriceTv);
         quan =(EditText) findViewById(R.id.quantity);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Food Details");
+        actionBar.setTitle("Food Menu");
 
 
         //get data from intent
@@ -82,6 +82,16 @@ EditText quan ;
                 Toast.makeText(getApplicationContext() , "Food Added To Cart", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+        CheckoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),Cart.class);
+                startActivity(i);
+            }
+        });
+
 
 
 

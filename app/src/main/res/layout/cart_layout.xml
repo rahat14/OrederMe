@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardElevation="4dp"
+    >
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    >
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/itemName_cart"
+android:textAllCaps="true"
+android:gravity="center_vertical|start"
+        android:textStyle="bold"
+        android:text="FOOD 1"
+        android:textSize="19sp"
+        android:textColor="@color/colorPrimaryDark"
+
+android:layout_marginLeft="10dp"
+
+
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="X"
+            android:textSize="19sp"
+            android:layout_marginLeft="250dp"
+            />
+        <TextView
+            android:id="@+id/show_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="1000"
+            android:textSize="19sp"
+            android:layout_marginLeft="5dp"
+            />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/itemPrice_cart"
+        android:textAllCaps="true"
+        android:gravity="center_vertical|start"
+        android:textStyle="italic"
+        android:text="10000.00"
+        android:textSize="19sp"
+        android:textColor="@color/colorPrimaryDark"
+
+        android:layout_marginLeft="10dp"
+
+
+        />
+
+
+
+
+
+</LinearLayout>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

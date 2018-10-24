@@ -1,6 +1,7 @@
 package com.example.anull.orederme;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -15,6 +16,8 @@ public class Resturant_list extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resturant_list);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("ভোজন বিলাস");
 
         el_classico = (CardView)findViewById(R.id.elclassio_btn);
 

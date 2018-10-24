@@ -2,6 +2,7 @@ package com.example.anull.orederme;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -27,6 +28,8 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mauth = FirebaseAuth.getInstance();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("ভোজন বিলাস");
 
         register_btn = (Button)findViewById(R.id.register_button);
         email =(EditText)findViewById(R.id.register_email);
@@ -89,16 +92,17 @@ public class Register extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        FirebaseUser  user = mauth.getCurrentUser();
-        if(user != null){
-            Intent i = new Intent(getApplicationContext()  , HomePage.class) ;
-            startActivity(i);
-            finish();
+     // FirebaseUser  user = mauth.getCurrentUser();
+     //   if(user != null){
+         //   Intent i = new Intent(getApplicationContext()  , HomePage.class) ;
+        //    startActivity(i);
+         //   finish();
+
 
 
         }
     }
-}
+
 
 
 
