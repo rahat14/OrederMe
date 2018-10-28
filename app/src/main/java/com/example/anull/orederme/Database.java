@@ -71,4 +71,17 @@ public  void cleanCart(){
 
 }
 
+public  Cursor getAllData(){
+        SQLiteDatabase db = this.getWritableDatabase() ;
+        Cursor res = db.rawQuery("select * from "+"OrderDetail",null);
+        return res ;
+
+
+
+
+}
+
+
+
+
 }
