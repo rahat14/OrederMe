@@ -1,11 +1,13 @@
 package com.example.anull.orederme;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -16,6 +18,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -42,6 +47,8 @@ public class EL_classico extends AppCompatActivity {
     FirebaseDatabase mFirebaseDatabase;
     DatabaseReference mRef;
     Toolbar toolbar ;
+FirebaseRecyclerAdapter<Model , ViewHolder>firebaseRecyclerAdapter ;
+FirebaseRecyclerOptions<Model>options ;
 
 
 
@@ -59,6 +66,7 @@ public class EL_classico extends AppCompatActivity {
 
 
         job_progressBar = (ProgressBar) findViewById(R.id.progressbar_job_ad) ;
+        job_progressBar.setVisibility(View.GONE);
 
         //Actionbar
 
@@ -83,7 +91,7 @@ public class EL_classico extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
 
         //set layout as LinearLayout
-        mRecyclerView.setLayoutManager(mLayoutManager);
+
 
         //send Query to FirebaseDatabase
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -92,7 +100,83 @@ public class EL_classico extends AppCompatActivity {
 
 
 
+showData();
+    }
 
+
+    private  void showData(){
+
+        options = new FirebaseRecyclerOptions.Builder<Model>().setQuery(mRef , Model.class)
+                .build() ;
+
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Model, ViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Model model) {
+                holder.setDetails(getApplicationContext(), model.getTitle(), model.getDescription(), model.getImage()  , model.getPrice());
+
+            }
+
+            @NonNull
+            @Override
+            public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
+                //INflate the row
+                Context context;
+                View itemVIew = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row, viewGroup, false);
+
+                ViewHolder viewHolder = new ViewHolder(itemVIew);
+
+                //itemClicklistener
+                viewHolder.setOnClickListener(new ViewHolder.ClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                        //Views
+                        //   TextView mTitleTv = view.findViewById(R.id.rTitleTv);
+                        //    TextView mDescTv = view.findViewById(R.id.rDescriptionTv);
+                        //     ImageView mImageView = view.findViewById(R.id.rImageView);
+
+
+
+                        //get data from views
+                        String mTitle = getItem(position).getTitle() ;                         //mTitleTv.getText().toString();
+                        String mDesc = getItem(position).getDescription();                                  //mDescTv.getText().toString();
+                        String mImage =  getItem(position).getImage();
+                        String mprice = getItem(position).getPrice();
+
+
+                        Intent intent = new Intent(getApplicationContext() , PostDetailActivity.class);
+
+
+
+
+                        //put bitmap image as array of bytes
+                        intent.putExtra("title", mTitle); // put title
+                        intent.putExtra("description", mDesc); //put description
+                        intent.putExtra("image",mImage); //put image
+                        intent.putExtra("price",mprice);
+
+
+                        startActivity(intent); //start activity
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+
+                    }
+                });
+
+
+
+                return viewHolder;
+            }
+        };
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        firebaseRecyclerAdapter.startListening();
+        //setting adapter
+
+        mRecyclerView.setAdapter(firebaseRecyclerAdapter);
     }
 
     //search data
@@ -104,69 +188,78 @@ public class EL_classico extends AppCompatActivity {
         Query firebaseSearchQuery = mRef.orderByChild("title").startAt(query).endAt(query + "\uf8ff");
 
 
-        FirebaseRecyclerAdapter<Model, ViewHolder> firebaseRecyclerAdapter =
-                new FirebaseRecyclerAdapter<Model, ViewHolder>(
-                        Model.class,
-                        R.layout.row,
-                        ViewHolder.class,
-                        firebaseSearchQuery
-                ) {
+        options = new FirebaseRecyclerOptions.Builder<Model>().setQuery(firebaseSearchQuery , Model.class)
+                .build() ;
 
+        firebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Model, ViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Model model) {
+                holder.setDetails(getApplicationContext(), model.getTitle(), model.getDescription(), model.getImage()  , model.getPrice());
+
+            }
+
+            @NonNull
+            @Override
+            public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
+                //INflate the row
+                Context context;
+                View itemVIew = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row, viewGroup, false);
+
+                ViewHolder viewHolder = new ViewHolder(itemVIew);
+
+                //itemClicklistener
+                viewHolder.setOnClickListener(new ViewHolder.ClickListener() {
                     @Override
-                    protected void populateViewHolder(ViewHolder viewHolder, Model model, int position) {
+                    public void onItemClick(View view, int position) {
 
-                        viewHolder.setDetails(getApplicationContext(), model.getTitle(), model.getDescription(), model.getImage(), model.getPrice() );
+                        //Views
+                        //   TextView mTitleTv = view.findViewById(R.id.rTitleTv);
+                        //    TextView mDescTv = view.findViewById(R.id.rDescriptionTv);
+                        //     ImageView mImageView = view.findViewById(R.id.rImageView);
+
+
+
+                        //get data from views
+                        String mTitle = getItem(position).getTitle() ;                         //mTitleTv.getText().toString();
+                        String mDesc = getItem(position).getDescription();                                  //mDescTv.getText().toString();
+                        String mImage =  getItem(position).getImage();
+                        String mprice = getItem(position).getPrice();
+
+
+                        Intent intent = new Intent(getApplicationContext() , PostDetailActivity.class);
+
+
+
+
+                        //put bitmap image as array of bytes
+                        intent.putExtra("title", mTitle); // put title
+                        intent.putExtra("description", mDesc); //put description
+                        intent.putExtra("image",mImage); //put image
+                        intent.putExtra("price",mprice);
+
+
+                        startActivity(intent); //start activity
                     }
 
                     @Override
-                    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                    public void onItemLongClick(View view, int position) {
 
-                        final ViewHolder viewHolder = super.onCreateViewHolder(parent, viewType);
-
-                        viewHolder.setOnClickListener(new ViewHolder.ClickListener() {
-                            @Override
-                            public void onItemClick(View view, int position) {
-                                //Views
-
-
-
-                                //get data from views
-                                String mTitle = getItem(position).getTitle() ;                         //mTitleTv.getText().toString();
-                                String mDesc = getItem(position).getDescription();                                  //mDescTv.getText().toString();
-                                String   mImage =  getItem(position).getImage();
-                                String   mprice = getItem(position).getPrice();
-
-
-                                Intent intent = new Intent(view.getContext(), PostDetailActivity.class);
-
-                                //put bitmap image as array of bytes
-                                intent.putExtra("title", mTitle); // put title
-                                intent.putExtra("description", mDesc); //put description
-
-                                intent.putExtra("image",mImage); //put image
-                                intent.putExtra("price",mprice);//put price
-
-
-
-                                startActivity(intent); //start activity
-
-
-                            }
-
-                            @Override
-                            public void onItemLongClick(View view, int position) {
-                                //TODO do your own implementaion on long item click
-                            }
-                        });
-
-                        return viewHolder;
                     }
+                });
 
 
-                };
 
-        //set adapter to recyclerview
+                return viewHolder;
+            }
+        };
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        firebaseRecyclerAdapter.startListening();
+        //setting adapter
+
         mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+
     }
 
 
@@ -174,108 +267,9 @@ public class EL_classico extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        FirebaseRecyclerAdapter<Model, ViewHolder> firebaseRecyclerAdapter =
-                new FirebaseRecyclerAdapter<Model, ViewHolder>(
-                        Model.class,
-                        R.layout.row,
-                        ViewHolder.class,
-                        mRef
-                ) {
-
-
-                    @Override
-                    protected void populateViewHolder(ViewHolder viewHolder, Model model, int position) {
-
-
-                        viewHolder.setDetails(getApplicationContext(), model.getTitle(), model.getDescription(), model.getImage()  , model.getPrice());
-
-
-                        Handler handler  = new Handler() ;
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                job_progressBar.setVisibility(View.GONE);
-
-                            }
-                        },3000);
-
-
-
-
-
-
-
-
+                    if(firebaseRecyclerAdapter !=null){
+                        firebaseRecyclerAdapter.startListening();
                     }
-
-
-
-
-
-
-                    @Override
-                    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-                        ViewHolder viewHolder = super.onCreateViewHolder(parent, viewType);
-
-                        viewHolder.setOnClickListener(new ViewHolder.ClickListener() {
-                            @Override
-                            public void onItemClick(View view, int position) {
-
-                                //Views
-                                //   TextView mTitleTv = view.findViewById(R.id.rTitleTv);
-                                //    TextView mDescTv = view.findViewById(R.id.rDescriptionTv);
-                                //     ImageView mImageView = view.findViewById(R.id.rImageView);
-
-
-
-                                //get data from views
-                                String mTitle = getItem(position).getTitle() ;                         //mTitleTv.getText().toString();
-                                String mDesc = getItem(position).getDescription();                                  //mDescTv.getText().toString();
-                                String mImage =  getItem(position).getImage();
-                               String mprice = getItem(position).getPrice();
-
-                              /*  Drawable mDrawable = mImageView.getDrawable();
-                                Bitmap mBitmap = null;
-                                 mBitmap = ((BitmapDrawable) mDrawable).getBitmap();
-                                        */
-
-                                // sending to new activity
-
-                                Intent intent = new Intent(view.getContext(), PostDetailActivity.class);
-                                                               /*  ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                                              mBitmap.compress(Bitmap.CompressFormat.PNG, 70, stream);
-                                                         byte[] bytes = stream.toByteArray(); */
-                                //put bitmap image as array of bytes
-                                intent.putExtra("title", mTitle); // put title
-                                intent.putExtra("description", mDesc); //put description
-                                intent.putExtra("image",mImage); //put image
-                                intent.putExtra("price",mprice);
-
-
-                                startActivity(intent); //start activity
-
-
-
-
-                            }
-
-                            @Override
-                            public void onItemLongClick(View view, int position) {
-                                //TODO do your own implementaion on long item click
-                            }
-                        });
-
-                        return viewHolder;
-                    }
-
-                };
-
-        //set adapter to recyclerview
-        mRecyclerView.setAdapter(firebaseRecyclerAdapter);
-
     }
 
     @Override

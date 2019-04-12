@@ -98,38 +98,9 @@ public class final_activity extends AppCompatActivity {
                 );
                 String orderuploadId= database.push().getKey();
                 database.child(orderuploadId).setValue(OrderUpload);
-
-
-
-
-
-
-
-
-
-
-
                 new  Database(getApplicationContext()).cleanCart();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 showAlertDialogButtonClicked(v);
-
-
 
 
 
